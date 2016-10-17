@@ -1,0 +1,23 @@
+<div class="game-interface">
+	<!-- page 1: select a cat from cat shelter -->
+	<div ng-if="gameSetting.page === 0">
+		<h1 class="text-center">Welcome to GWC Cat Shelter <br />
+			<small>Which cat would you like to adopt today?</small>
+		</h1>
+
+		<div class="row">
+			<div class="col-md-4 col-xs-6" ng-repeat="catType in catLists track by $index">
+				<a href="#" class="thumbnail" ng-class="{'selected': catType === cat.selected}" ng-click="cat.selected = catType" class="center-block">
+					<img class="img-responsive" ng-src="/lib/assets/cats/{{catType}}" alt="cat" style="max-height: 200px;">
+				</a>
+			</div>
+		</div>
+
+		<div class="text-center" ng-if="cat.selected">
+			<button class="btn btn-primary" ng-click="gameSetting.page = 1">Select My Cat</button>
+		</div>
+	</div>
+
+	<div ng-if="gameSetting.page === 1" ng-include="'game/setup-variables.html'"></div>
+	<div ng-if="gameSetting.page === 2" ng-include="'game/game-interface.html'" ng-init="getHelp()"></div>
+</div>

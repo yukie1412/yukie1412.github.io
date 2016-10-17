@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" ng-app="gwcMills">
+<head>
+	<title>Girls Who Code</title>
+	<meta name="description" content="Girls Who Code Millbrae Club 2016-2017">
+	<meta name="keywords" content="GWC, Millbrae Library">
+	<meta name="author" content="Jennifer Qiao">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<base href="/">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" />
+	<!-- inject:css -->
+	<link rel="stylesheet" href="/lib/styles/main.css">
+	<!-- endinject -->
+
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
+	<!-- inject:js -->
+	<script src="/all.js"></script>
+	<!-- endinject -->
+</head>
+
+<body ng-controller="gwcMain">
+	<div class="container">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<!-- mobile -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" 
+						data-target="#collapse-menu" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#" ui-sref="main">Home</a>
+				</div>
+
+				<div class="collapse navbar-collapse" id="collapse-menu">
+					<ul class="nav navbar-nav">
+						<li><a ui-sref="variables">Variables</a></li>
+						<li>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								Operations <span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a ui-sref="operations.summary">Summary</a></li>
+								<li><a ui-sref="operations.symbol">Identify Symbol</a></li>
+								<li><a ui-sref="operations.try">Try it Yourself</a></li>
+							</ul>
+						</li>
+						<li><a ui-sref="game">Game</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<ui-view></ui-view>
+	</div>
+</body>
+</html>

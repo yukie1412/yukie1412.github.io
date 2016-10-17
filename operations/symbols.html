@@ -1,0 +1,27 @@
+<div class="jumbotron text-center" ng-controller="opSymbolCtrl">
+	<h1 ng-bind="variable.value"></h1>
+
+	<form>
+		<div class="form-group">
+			<label class="control-label">Complete the equation with the correct mathematical operation.</label>
+			<div class="radio" ng-repeat="key in operations track by $index">
+				<label>
+					<input type="radio" name="varType" id="{{key}}" value="{{key}}" ng-model="variable.symbol" 
+					       class="text-capitalize" ng-disabled="variable.result"> {{key}}
+				</label>
+			</div>
+		</div>
+
+		<div class="alert alert-success" role="alert" ng-if="variable.result">
+			Congratulations! You got it right!!
+		</div>
+		<div class="alert alert-info" role="alert" ng-if="variable.message" ng-bind="variable.message"></div>
+		<div class="alert alert-danger" role="alert" ng-if="variable.result === false && !variable.message">
+			Think again. <!-- TODO: better hint/message? -->
+		</div>
+
+		<button type="button" class="btn btn-success" ng-click="verifyAnswer()" ng-if="!variable.result"
+		        ng-disabled="variable.symbol === ''">Check response</button>
+		<button type="button" class="btn btn-default" ng-click="reset()" ng-if="variable.result">Play Again</button>
+	</form>
+</div>

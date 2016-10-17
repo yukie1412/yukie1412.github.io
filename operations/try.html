@@ -1,0 +1,35 @@
+<form name="mathForm">
+	<div class="form-group" ng-form name="firstVar" ng-class="{'has-error': firstVar.$dirty && firstVar.$invalid}">
+		<label>Define a <strong>number</strong> variable called <code ng-bind="first.name"></code></label>
+		<input type="text" class="form-control" ng-model="first.value" ng-blur="validateInput('first')" required>
+	</div>
+	<div class="alert alert-danger" role="alert" ng-if="first.message" ng-bind="first.message"></div>
+
+	<div ng-if="second">
+		<div class="form-group" ng-form name="secondVar" ng-class="{'has-error': secondVar.$dirty && secondVar.$invalid}">
+			<label>Define a <strong>number</strong> variable called <code ng-bind="second.name"></code></label>
+			<input type="text" class="form-control" ng-model="second.value" ng-blur="validateInput('second')" required>
+		</div>
+		<div class="alert alert-danger" role="alert" ng-if="second.message" ng-bind="second.message"></div>
+	</div>
+
+	<div class="form-group" ng-form name="opVar" ng-class="{'has-error': opVar.$dirty && opVar.$invalid}">
+		<label>
+			Define an <strong>equation</strong> using variables 
+			variable <code ng-bind="first.name"></code>
+			<span ng-if="second">, variable <code ng-bind="second.name"></code>,</span>
+			and math operator <code ng-bind="op.name"></code>
+		</label>
+		<input type="text" class="form-control" ng-model="op.value" required>
+	</div>
+
+	<button ng-disabled="mathForm.$invalid || first.message || second.message || op.message"
+	        ng-click="getAnswer()" ng-if="!answer" class="btn btn-default">Get Answer</button>
+
+	<div ng-if="answer">
+		<div class="form-group">
+			<input class="form-control" ng-value="answer" disabled />
+		</div>
+		<button type="button" class="btn btn-default" ng-click="reset(mathForm)">Play Again</button>
+	</div>
+</form>

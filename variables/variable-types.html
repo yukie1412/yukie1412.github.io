@@ -1,0 +1,33 @@
+<div class="jumbotron text-center" ng-controller="varTypeCtrl">
+	<h1 ng-bind="variable.value"></h1>
+
+	<form>
+		<div class="form-group">
+			<label class="control-label">What type of variable is this?</label>
+			<div class="radio" ng-repeat="key in optionKeys track by $index">
+				<label>
+					<input type="radio" name="varType" id="{{key}}" value="{{key}}" 
+					       ng-model="variable.type" class="text-capitalize" 
+					       ng-change="variable.message = 0;"> {{key}}
+				</label>
+				</div>
+		</div>
+
+		<div ng-if="variable.message > 0">
+			<div class="alert alert-success" role="alert" ng-if="variable.result">
+				Congratulations! You got it right!!
+			</div>
+
+			<div class="alert alert-info" role="alert" ng-if="!variable.result" ng-bind="getHelp()"></div>
+		</div>
+
+		<div ng-if="!variable.result">
+			<button type="button" class="btn btn-info" ng-click="variable.message = 1;">Hint</button>
+			<button type="button" class="btn btn-success" ng-click="verifyAnswer()"
+			        ng-disabled="variable.type === ''">Check response</button>
+		</div>
+		<div ng-if="variable.result">
+			<button type="button" class="btn btn-default" ng-click="reset()">Play Again</button>
+		</div>
+	</form>
+</div>

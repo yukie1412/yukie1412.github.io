@@ -1,0 +1,41 @@
+<h1 class="text-center">
+	Congratulations! You have adopted a cat. <br />
+	<small>Before starting the game, you'll need to assign some variables</small>
+</h1>
+
+<div class="row">
+	<!-- cat image -->
+	<div class="col-md-4 col-xs-12">
+		<div style="margin-bottom: 20px;">
+			<img ng-src="/lib/assets/cats/{{cat.selected}}" alt="adopted cat" class="img-thumbnail img-responsive center-block">
+		</div>
+
+		<form class="form-horizontal">
+			<div class="form-group" ng-repeat="(key, property) in cat track by $index" ng-if="key !== 'selected'">
+				<label class="col-sm-4 control-label" ng-bind="property.text"></label>
+				<div class="col-md-6">
+					<input disabled class="form-control" ng-if="key !== 'isFemale'" ng-value="property.value">
+					<input disabled class="form-control" ng-if="key === 'isFemale'" ng-value="cat.isFemale.value ? 'Female' : 'Male'">
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<!-- define variables -->
+	<div class="col-md-8 col-xs-12">
+		<form name="configForm">
+			<div class="form-group" ng-repeat="property in variableProperties track by $index" ng-form name="{{property.formName}}"
+			     ng-class="{'has-error': {{property.formName}}.$invalid && {{property.formName}}.$dirty || property.message}">
+				<label>
+					Define a(n) <u ng-bind="property.type"></u> variable called <code ng-bind="property.name"></code>.
+					<i class="fa fa-question-circle pointer" data-toggle="tooltip" title="{{property.description}}"></i>
+				</label>
+				<input type="text" class="form-control" ng-model="variableDefinitions[property.name]" 
+				       ng-blur="verifyInput(property, configForm)" required>
+				<p class="help-block" ng-bind="property.message"></p>
+			</div>
+
+			<button class="btn btn-primary" ng-click="gameSetting.page = 2" ng-disabled="configForm.$invalid || !noMessages()">Start Game!</button>
+		</form>
+	</div>
+</div>

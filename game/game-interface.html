@@ -1,0 +1,93 @@
+<div class="row" style="margin-bottom: 30px;">
+	<!-- help center -->
+	<div class="col-sm-6 col-xs-12">
+		<button class="btn btn-info" ng-click="getHelp()" ng-disabled="gameSetting.help">
+			<i class="fa fa-info-circle fa-3x"></i>
+		</button>
+	</div>
+	<div class="col-sm-6 col-xs-12">
+		<!-- status -->
+		<div class="btn-group pull-right" role="group">
+			<button type="button" class="btn btn-default" ng-include="'icon-button'" disabled>
+				{{icon = 'fa-heart'; text = 'Happiness'; value = cat.happiness}}
+			</button>
+			<button type="button" class="btn btn-default" ng-include="'icon-button'" disabled>
+				{{icon = 'fa-money'; text = 'Money'; value = cat.coins}}
+			</button>
+		</div>
+		<!-- countdown -->
+		<div ng-bind="timer" class="game-label" ng-class="{'text-muted': timer > 3, 'text-danger': timer <= 3}"></div>
+	</div>
+</div>
+
+<div class="row">
+	<!-- inventory -->
+	<div class="col-xs-2">
+		<h3>Inventory</h3>
+		<button class="btn btn-default btn-fixed-icon" ng-disabled="gameSetting.help" ng-include="'icon-button'">
+			{{icon = 'fa-birthday-cake'; text = 'Food'; value = cat.inventory.food}}
+		</button><br />
+		<button class="btn btn-default btn-fixed-icon" ng-disabled="gameSetting.help" ng-include="'icon-button'">
+			{{icon = 'fa-futbol-o'; text = 'Toy'; value = cat.inventory.toy}}
+		</button><br />
+		<hr />
+		<!-- shop -->
+		<button class="btn btn-default btn-fixed-icon" ng-disabled="gameSetting.help" ng-include="'icon-button'">
+			{{icon = 'fa-cart-plus'; text = 'Shop'}}
+		</button>
+	</div>
+
+	<!-- cat -->
+	<div class="col-xs-8">
+		<div class="game-bkg">
+			<img ng-if="!gameSetting.lost" ng-src="/lib/assets/cats/{{cat.selected}}" alt="adopted cat" class="img-responsive">
+		</div>
+	</div>
+
+	<!-- actions -->
+	<div class="col-xs-2">
+		<div class="pull-right">
+			<h3>Actions</h3>
+			<button class="btn btn-default btn-fixed-icon" ng-disabled="gameSetting.help" ng-include="'icon-button'">
+				{{icon = 'fa-cutlery'; text = 'Eat'}}
+			</button><br /> <!-- eat -->
+			<button class="btn btn-default btn-fixed-icon" ng-disabled="gameSetting.help" ng-include="'icon-button'">
+				{{icon = 'fa-gamepad'; text = 'Play'}}
+			</button><br /> <!-- play -->
+			<button class="btn btn-default btn-fixed-icon" ng-disabled="gameSetting.help" ng-include="'icon-button'">
+				{{icon = 'fa-paw'; text = 'Pet'}}
+			</button><br /> <!-- pet -->
+			<button class="btn btn-default btn-fixed-icon" ng-disabled="gameSetting.help" ng-include="'icon-button'">
+				{{icon = 'fa-tint'; text = 'Shower'}}
+			</button> <!-- shower -->
+		</div>
+	</div>
+</div>
+
+<!-- help -->
+<div class="help-tooltip" style="{{gameInstructions[gameSetting.helpStep].style}}" ng-if="gameSetting.help">
+	<i class="fa fa-times" ng-click="closeHelp()"></i>
+	<div class="help-body">
+		<div ng-repeat="rule in gameInstructions[gameSetting.helpStep].rules track by $index" ng-bind-html="rule | toHTML"></div>
+	</div>
+	<div class="pull-right">
+		<button class="btn btn-default btn-sm" ng-click="nextHelpHint()">Next</button>
+	</div>
+</div>
+
+<!-- game over -->
+<div class="game-over" ng-if="gameSetting.lost">
+	<h1>Game Over<br />
+		<small class="text-danger">{{cat.petName}} left you due to sadness. <i class="fa fa-frown-o"></i></small>
+	</h1>
+	<button class="btn btn-default" ng-click="reset()">Play Again</button>
+</div>
+
+<!-- scripts -->
+<script type="text/ng-template" id="icon-button">
+	<div class="pull-left">
+		<i class="fa fa-3x" ng-class="icon"></i>
+		<div class="text-center" ng-bind="text"></div>
+	</div>
+	<span ng-if="value" ng-bind="value" class="pull-right game-label"></span>
+</script>
