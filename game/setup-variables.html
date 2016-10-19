@@ -11,7 +11,7 @@
 		</div>
 
 		<form class="form-horizontal">
-			<div class="form-group" ng-repeat="(key, property) in cat track by $index" ng-if="key !== 'selected'">
+			<div class="form-group" ng-repeat="(key, property) in cat track by $index" ng-if="key !== 'selected' && key !== 'inventory'">
 				<label class="col-sm-4 control-label" ng-bind="property.text"></label>
 				<div class="col-md-6">
 					<input disabled class="form-control" ng-if="key !== 'isFemale'" ng-value="property.value">
@@ -28,7 +28,9 @@
 			     ng-class="{'has-error': {{property.formName}}.$invalid && {{property.formName}}.$dirty || property.message}">
 				<label>
 					Define a(n) <u ng-bind="property.type"></u> variable called <code ng-bind="property.name"></code>.
-					<i class="fa fa-question-circle pointer" data-toggle="tooltip" title="{{property.description}}"></i>
+					<span class="fake-tooltip" data-tooltip="{{property.description}}">
+						<i class="fa fa-question-circle pointer"></i>
+					</span>
 				</label>
 				<input type="text" class="form-control" ng-model="variableDefinitions[property.name]" 
 				       ng-blur="verifyInput(property, configForm)" required>

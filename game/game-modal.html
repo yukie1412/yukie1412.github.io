@@ -1,0 +1,18 @@
+<div class="modal-header">
+	<h3 class="modal-title">What is the command...?</h3>
+</div>
+<div class="modal-body">
+	<form name="modalQuestions">
+		<div class="form-group" ng-repeat="question in modal.questions track by $index" ng-form name="{{question.name}}"
+		     ng-class="{'has-error': {{question.name}}.$invalid && {{question.name}}.$dirty}">
+			<label ng-bind-html="question.q | toHTML"></label>
+			<input type="text" class="form-control" ng-model="question.a" required>
+		</div>
+	</form>
+
+	<div class="alert alert-info" role="alert" ng-if="gameSetting.verifyAnswer" ng-bind="gameSetting.verifyAnswer"></div>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-default" type="button" ng-click="closeModal()">Cancel</button>
+	<button class="btn btn-primary" type="button" ng-click="confirmAnswer()" ng-disabled="configForm.$invalid">Confirm Answer</button>
+</div>
