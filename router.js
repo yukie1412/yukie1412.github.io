@@ -12,12 +12,28 @@ app.constant('CONTENT_ROUTE', [
 	{
 		name: 'variables',
 		url: '/variables',
-		views: {
-			'@': {
-				templateUrl: 'variables/variable-types.html',
-				controller: 'varTypeCtrl'
+		children: [
+			{
+				name: 'summary',
+				url: '/summary',
+				views: {
+					'@': {
+						templateUrl: 'variables/summary.html',
+						controller: 'varSummaryCtrl'
+					}
+				}
+			},
+			{
+				name: 'types',
+				url: '/types',
+				views: {
+					'@': {
+						templateUrl: 'variables/variable-types.html',
+						controller: 'varTypeCtrl'
+					}
+				}
 			}
-		}
+		]
 	},
 	{
 		name: 'operations',
@@ -25,10 +41,16 @@ app.constant('CONTENT_ROUTE', [
 		children: [
 			{
 				name: 'summary',
-				url: '/summary'
+				url: '/summary',
+				views: {
+					'@': {
+						templateUrl: 'operations/summary.html',
+						controller: 'opSummaryCtrl'
+					}
+				}
 			},
 			{
-				name: 'symbol',
+				name: 'symbols',
 				url: '/symbol',
 				views: {
 					'@': {

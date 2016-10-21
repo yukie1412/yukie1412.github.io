@@ -1,0 +1,37 @@
+<a class="pull-right" target="_blank"
+   href="https://docs.google.com/presentation/d/17YR27AOzuIRiTgeLnp49bpmbkRF8fQwG2bkliAE3IU0/edit?usp=sharing" >Full Lesson Slide</a>
+<h1 class="text-center">Variables</h1>
+
+<h2 class="page-header">What is a Variable</h2>
+<p class="font-lg">In simple terms, a variable is anything that stores value.</p>
+<div class="row">
+	<div class="col-sm-6 col-md-4" ng-repeat="variable in content.variables track by $index">
+		<div class="thumbnail">
+			<img ng-src="{{variable.img}}" alt="{{variable.title}}" />
+			<div class="caption">
+				<h3 ng-bind="variable.title"></h3>
+				<p  ng-bind="variable.description"></p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<h2 class="page-header">Types of Variables</h2>
+<p class="font-lg">There are 3 basic types of variables: string, boolean, number.</p>
+<dl class="dl-horizontal" ng-repeat="type in content.types track by $index">
+	<dt class="media-heading" ng-bind="type.title"></dt>
+	<dd ng-bind-html="type.description | toHTML"></dd>
+</dl>
+
+<h2 class="page-header">Defining a Variable in JavaScript</h2>
+<p class="font-lg">
+	All variables in JavaScript are defined by the keyword <code>var</code>, 
+	follow by the variable name (and assignment),
+	and end with a semi-colon <code>;</code>
+</p>
+<p class="font-lg">Remember:</p>
+<ul class="list-unstyled list-with-margin">
+	<li>variable names should be camel case: <code>var firstName = "Jennifer";</code></li>
+	<li>variable names should be descriptive: <code>var sayHello = "Hello";</code></li>
+	<li>variable names <strong>must</strong> start with a letter.</li>
+</ul>

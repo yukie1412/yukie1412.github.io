@@ -2,18 +2,25 @@ app.controller('opTryCtrl', [ '$scope',
 	function(scope) {
 		'use strict';
 
-		var variableNames = 'abcdefghijklmnopqrstuvwxyz'.split(''),
-			nameArrLength = variableNames.length,
+		var variableNames, nameArrLength,
 			mathOperators = ['+', '-', '*', '/', '%', '++', '--'],
 			mathArrLength = mathOperators.length;
 
 		function _getRandomName (type) {
 			var len = type === 'name' ? nameArrLength : mathArrLength;
 			var idx = Math.floor(Math.random() * len);
-			return type === 'name' ? variableNames[idx] : mathOperators[idx];
+			if (type === 'name') {
+				var str = variableNames[idx];
+				nameArrLength--;
+				variableNames.splice(idx, 1); // remove the character to avoid duplicates
+				return str;
+			}
+			return mathOperators[idx];
 		}
 
 		scope.reset = function (form) {
+			variableNames = 'abcdefghijklmnopqrstuvwxyz'.split('');
+			nameArrLength = variableNames.length;
 			if (form) {
 				form.$setPristine();
 			}

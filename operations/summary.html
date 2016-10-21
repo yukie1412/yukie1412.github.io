@@ -1,0 +1,49 @@
+<a class="pull-right" target="_blank"
+   href="https://docs.google.com/presentation/d/1Osz3z_SzkNlt1EVsDYJMW4Hyy8McSiL2QdIyFr-6eQU/edit?usp=sharing" >Full Lesson Slide</a>
+<h1 class="text-center">Operators</h1>
+
+<h2 class="page-header">Basic Operators</h2>
+<p class="font-lg">There are 5 basic operators, very similar to math.</p>
+<dl class="dl-horizontal" ng-repeat="operator in content.basics track by $index">
+	<dt class="media-heading" ng-bind-html="operator.sign | toHTML"></dt>
+	<dd ng-bind-html="operator.description | toHTML"></dd>
+</dl>
+
+<h2 class="page-header">Increments & Decrements</h2>
+<p class="font-lg">A lazy alternative to <em>add 1</em> or <em>subtract 1</em>.</p>
+<dl class="dl-horizontal" ng-repeat="operator in content.one track by $index">
+	<dt class="media-heading" ng-bind-html="operator.sign | toHTML"></dt>
+	<dd ng-bind-html="operator.description | toHTML"></dd>
+</dl>
+
+<h2 class="page-header">Assignment Operators</h2>
+<p class="font-lg">A lazy alternative to update a number.</p>
+<dl class="dl-horizontal" ng-repeat="operator in content.equation track by $index">
+	<dt class="media-heading" ng-bind-html="operator.sign | toHTML"></dt>
+	<dd ng-bind-html="operator.description | toHTML"></dd>
+</dl>
+
+<h2 class="page-header">Short-cut Explained</h2>
+<p><code>x++;</code> is the same as <code>x += 1;</code> is the same as <code>x = x + 1;</code></p>
+<p><code>x--;</code> is the same as <code>x -= 1;</code> is the same as <code>x = x - 1;</code></p>
+<p><code>x += y;</code> is the same as <code>x = x + y;</code></p>
+<p><code>x -= y;</code> is the same as <code>x = x - y;</code></p>
+<p><code>x *= y;</code> is the same as <code>x = x * y;</code></p>
+<p><code>x /= y;</code> is the same as <code>x = x / y;</code></p>
+<div class="media">
+	<div class="media-left">
+		<img class="media-object" alt="packing" src="lib/assets/packing.gif" />
+	</div>
+	<div class="media-body">
+		<p>Please note that the equal sign <code>=</code> means assignment, <strong>not</strong> equals to.</p>
+		<p>Imagine a variable <code>z</code>, then <code>x += y</code> is the same as <code>z = x + y;</code> followed by <code>x = z;</code>.</p>
+		<hr />
+		<h4 class="media-heading">Imagine Packing a Suitcase</h4>
+		<p>
+			The suitcase is <code>x</code>, and clothes are <code>y</code>, 
+			and the process of adding clothes into the suitcase is <code>x += y;</code>.
+		</p>
+		<p>Everytime you add (or remove) a cloth from the suitcase, the weight of the suitcase changes.</p>
+		<p>Similarly, when you update <code>x</code> with the short-cut operations, value of <code>x</code> changes.</p>
+	</div>
+</div>
