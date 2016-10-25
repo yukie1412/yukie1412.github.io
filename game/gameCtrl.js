@@ -19,6 +19,11 @@ app.controller('gameCtrl', ['$scope', '$timeout', '$interval', '$uibModal', 'VAR
 		 *   must end with ;
 		 */
 		var regex = /^var [a-zA-Z]+ = [a-zA-Z0-9-\.\"]+;$/,
+			answerRegex = [
+				/^console.log\(.*\);$/,
+				/^alert\(.*\);$/,
+				/^window.alert\(.*\);$/
+			],
 			instructionLength = $scope.gameInstructions.length,
 			stopTimer, showerCycle, pauseInterval, response, currentModal;
 
@@ -215,6 +220,13 @@ app.controller('gameCtrl', ['$scope', '$timeout', '$interval', '$uibModal', 'VAR
 		/**
 		 * interactions
 		 */
+		$scope.talk = function () {
+			_openModal('talkToPet');
+			$scope.modal.questions = [{
+				q: 'What would you like to say to your pet? Use either <code>console.log</code> or <code>alert</code>',
+				name: 'talk'
+			}];
+		};
 		$scope.showerCat = function (bypass) {
 			if (!bypass) {
 				_openModal('showerCat');
@@ -243,12 +255,28 @@ app.controller('gameCtrl', ['$scope', '$timeout', '$interval', '$uibModal', 'VAR
 			$scope.gameSetting.verifyAnswer = '';
 			var incorrect = [];
 			_.forEach($scope.modal.questions, function (question, idx) {
-				if (question.answers.indexOf(question.a) === -1) {
-					incorrect.push(idx + 1);
+				if (_.has(question, 'answers')) {  // exact match
+					if (question.answers.indexOf(question.a) === -1) {
+						incorrect.push(idx + 1);
+					}
+				} else {  // regex
+					var hasMatch = false;
+					_.some(answerRegex, function (ans) {
+						if (!_.isNull(question.a.match(ans))) {
+							hasMatch = true;
+							return;  // break out of _.some loop
+						}
+					});
+					if (!hasMatch) {
+						incorrect.push(1);
+					}
 				}
 			});
+
 			if (_.isEmpty(incorrect)) {
-				$scope.closeModal(true);
+				if (response !== 'talkToPet') {
+					$scope.closeModal(true);
+				}
 				var type, action;
 				$scope.messages.push('');
 
@@ -283,6 +311,19 @@ app.controller('gameCtrl', ['$scope', '$timeout', '$interval', '$uibModal', 'VAR
 						$scope.messages.push('happiness -= ' + $scope.cat.shower.value);
 						showerCycle = 5;
 						_isGameOver();
+						break;
+					case 'talkToPet':
+						try {
+							window.eval($scope.modal.questions[0].a);  // jshint ignore:line
+							$scope.closeModal(true);
+							if ($scope.modal.questions[0].a.indexOf('console.log') === 0) {
+								var msg = /\((.*)\)/;
+								$scope.messages.push(msg.exec($scope.modal.questions[0].a)[1]);
+							}
+						} catch (e) {
+							console.log(e);
+							$scope.gameSetting.verifyAnswer = 'Verify your syntax';
+						}
 				}
 
 			} else {

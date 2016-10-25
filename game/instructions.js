@@ -37,14 +37,12 @@ app.constant('INSTRUCTIONS', [
 			"Click on the item to add to your inventory."
 		]
 	},
-	// {
-	// 	style: 'top: 360px; left: 80px;',
-	// 	rules: [
-	// 		"This is the shop.",
-	// 		"You can buy food & toy here.",
-	// 		"Make sure you have enough money."
-	// 	]
-	// },
+	{
+		style: 'top: 360px; left: 80px;',
+		rules: [
+			"You can now talk to your pet!"
+		]
+	},
 	{
 		style: 'top: 250px; right: 90px;',
 		rules: [

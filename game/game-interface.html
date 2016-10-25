@@ -33,6 +33,11 @@
 		<button class="btn btn-default btn-fixed-icon" ng-disabled="gameSetting.help"
 		        ng-include="'icon-button'" ng-click="addInventory('toy')">
 			{{icon = 'fa-futbol-o'; text = 'Toy'; value = cat.inventory.toy}}
+		</button><br />
+		<hr />
+		<button class="btn btn-default btn-fixed-icon" ng-disabled="gameSetting.help"
+		        ng-include="'icon-button'" ng-click="talk()">
+			{{icon = 'fa-comment'; text = 'Chat'}}
 		</button>
 	</div>
 
