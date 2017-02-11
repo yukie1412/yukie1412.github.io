@@ -80,6 +80,49 @@ app.constant('CONTENT_ROUTE', [
 				controller: 'gameCtrl'
 			}
 		}
+	},
+	{
+		name: 'guess',
+		url: '/guess',
+		views: {
+			'@': {
+				templateUrl: 'function/function.html',
+				controller: 'guessCtrl'
+			}
+		}
+	},
+	{
+		name: 'html',
+		url: '/html',
+		children: [
+			{
+				name: 'struct',
+				url: '/structure',
+				views: {
+					'@': {
+						templateUrl: 'html/main.html'
+					}
+				}
+			},
+			{
+				name: 'lib',
+				url: '/libraries',
+				views: {
+					'@': {
+						templateUrl: 'html/library.html'
+					}
+				}
+			},
+			{
+				name: 'samples',
+				url: '/samples',
+				views: {
+					'@': {
+						templateUrl: 'html/sample.html'
+					}
+				}
+			}
+		]
 	}
 ]);
 
