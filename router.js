@@ -82,16 +82,6 @@ app.constant('CONTENT_ROUTE', [
 		}
 	},
 	{
-		name: 'guess',
-		url: '/guess',
-		views: {
-			'@': {
-				templateUrl: 'function/function.html',
-				controller: 'guessCtrl'
-			}
-		}
-	},
-	{
 		name: 'html',
 		url: '/html',
 		children: [
@@ -110,15 +100,6 @@ app.constant('CONTENT_ROUTE', [
 				views: {
 					'@': {
 						templateUrl: 'html/library.html'
-					}
-				}
-			},
-			{
-				name: 'samples',
-				url: '/samples',
-				views: {
-					'@': {
-						templateUrl: 'html/sample.html'
 					}
 				}
 			}
