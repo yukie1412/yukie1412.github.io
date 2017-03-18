@@ -1,0 +1,37 @@
+<div class="carousel-content">
+	<h1>Access The Value</h1>
+
+	<div class="bs-callout bs-callout-default">
+		<p>Consider the code below:</p>
+<pre>
+var obj = {
+	"first property": "abc",
+	secondProperty: 123
+};
+var key = "secondProperty";</pre>
+	</div>
+
+	<div class="bs-callout bs-callout-default">
+		<h4>Dot Notation</h4>
+		<p>Recommended syntax when the key is a valid JavaScript identifier (how you would define a variable).<br />
+		Basically a dot (<code>.</code>) is sandwiched between the object and the key.</p>
+		<ul>
+			<li><code>obj.secondProperty</code> gives you <code>123</code></li>
+		</ul>
+	</div>
+
+	<div class="bs-callout bs-callout-default">
+		<h4>Bracket Notation</h4>
+		<p>Use this syntax when the key is a variable, or an invalid JavaScript identifier.<br />
+		The key is enclosed in the square brackets (<code>[</code> & <code>]</code>), immediately after the object.</p>
+		<ul>
+			<li><code>obj["first property"]</code> gives you <code>"abc"</code></li>
+			<li><code>obj[key]</code> gives you <code>123</code></li>
+		</ul>
+	</div>
+
+	<div class="bs-callout bs-callout-danger">
+		<h4>Non-Existing Key</h4>
+		<p>What happens when you try to access a non-existing key, such as <code>obj.thirdKey</code>?</p>
+	</div>
+</div>

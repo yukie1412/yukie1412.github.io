@@ -1,0 +1,8 @@
+<div class="row">
+	<div uib-carousel active="active">
+     	<div uib-slide ng-repeat="slide in slides track by $index" index="$index" style="overflow: scroll;">
+     		<div id="bkg-placeholder"></div>
+			<ng-include src="slide"></ng-include>
+		</div>
+	</div>
+</div>

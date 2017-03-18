@@ -1,0 +1,38 @@
+<div class="carousel-content">
+	<h1>Exercise</h1>
+
+	<div class="row">
+		<div class="col-md-6">
+			<p>Earlier we've filled out a pet adoption form with the following values:</p>
+			<div ng-repeat="(key, val) in pet" ng-if="key != 'pet'">
+				<code>var {{key}} = {{val.value}};</code>
+			</div>
+		</div>
+
+		<div class="col-md-6">
+			<form name="petObjForm" ng-init="property = formProperties[5]">
+				<div class="form-group"
+					 ng-class="{'has-error': {{property.formName}}.$invalid && {{property.formName}}.$dirty || property.message}">
+					<label>Let's translate it into an object <code>pet</code>!</label>
+					<textarea class="form-control" rows="7" ng-model="variableDefinitions.pet" 
+							  ng-blur="verifyInput(property, petObjForm)" required></textarea>
+					<p class="help-block" ng-bind="property.message"></p>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<form>
+				<div class="form-group">
+					<label>Type a variable to see its value</label>
+					<input type="text" class="form-control" ng-model="output.value"></div>
+				</div>
+			</form>
+			<div ng-if="output.value">
+				<pre>{{getValue()}}</pre>
+			</div>
+		</div>
+	</div>
+</div>

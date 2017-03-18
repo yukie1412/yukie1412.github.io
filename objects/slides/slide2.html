@@ -1,0 +1,27 @@
+<div class="carousel-content">
+	<h1>Review</h1>
+
+	<div class="bs-callout bs-callout-default">
+		<h4>Adopt A Pet</h4>
+		Recall the <a ui-sref="game">Cat Game</a>, where we had to define a series of initial values upon the start. Let's adopt another pet by filling out the form below.
+	</div>
+
+	<form name="petForm">
+		<div class="form-group" ng-repeat="property in formProperties track by $index" ng-form name="{{property.formName}}"
+			 ng-if="property.formName != 'petInput'"
+		     ng-class="{'has-error': {{property.formName}}.$invalid && {{property.formName}}.$dirty || property.message}">
+			<label>
+				Define a(n) <u ng-bind="property.type"></u> variable called <code ng-bind="property.name"></code>
+				<small class="text-muted" style="font-weight: 400">({{property.description}})</small>.
+			</label>
+			<input type="text" class="form-control" ng-model="variableDefinitions[property.name]" 
+			       ng-blur="verifyInput(property, petForm)" required>
+			<p class="help-block" ng-bind="property.message"></p>
+		</div>
+	</form>
+
+	<div class="bs-callout bs-callout-danger">
+		<h4>Access An Array</h4>
+		<p>Do you recall how to access elements of an array?</p>
+	</div>
+</div>
